@@ -1,8 +1,31 @@
+import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { CONTACT } from "@/data/contact";
 
 export default function Contact() {
   const { t } = useTranslation();
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const body = new URLSearchParams(new FormData(form) as never);
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+      if (!res.ok) throw new Error(res.statusText);
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <>
@@ -66,56 +89,97 @@ export default function Contact() {
                 <h2 className="font-display text-2xl font-semibold text-dark mb-6">
                   {t("contact.formTitle")}
                 </h2>
-                <form
-                  name="contact"
-                  method="POST"
-                  data-netlify="true"
-                  className="space-y-5"
-                >
-                  <input type="hidden" name="form-name" value="contact" />
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-dark mb-1.5">
-                      {t("contact.formName")}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm"
-                    />
+
+                {status === "success" ? (
+                  <div className="rounded-lg bg-green-50 border border-green-200 p-6 text-center">
+                    <svg className="w-10 h-10 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <p className="font-semibold text-green-800">{t("contact.successTitle")}</p>
+                    <p className="text-green-700 text-sm mt-1">{t("contact.successMsg")}</p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="mt-4 text-sm text-green-700 underline hover:text-green-900 transition-colors"
+                    >
+                      {t("contact.sendAnother")}
+                    </button>
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-dark mb-1.5">
-                      {t("contact.formEmail")}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-dark mb-1.5">
-                      {t("contact.formMessage")}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="px-8 py-3 bg-amber text-dark font-semibold text-sm rounded-lg hover:bg-amber-light transition-colors cursor-pointer"
+                ) : (
+                  <form
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    onSubmit={handleSubmit}
+                    className="space-y-5"
                   >
-                    {t("contact.formSend")}
-                  </button>
-                </form>
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden">
+                      <label>
+                        Don't fill this out: <input name="bot-field" />
+                      </label>
+                    </p>
+
+                    {status === "error" && (
+                      <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                        {t("contact.errorMsg")}
+                      </div>
+                    )}
+
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-dark mb-1.5">
+                        {t("contact.formName")}
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        disabled={status === "sending"}
+                        className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm disabled:opacity-50"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-dark mb-1.5">
+                        {t("contact.formEmail")}
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        disabled={status === "sending"}
+                        className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm disabled:opacity-50"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-dark mb-1.5">
+                        {t("contact.formMessage")}
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={5}
+                        required
+                        disabled={status === "sending"}
+                        className="w-full px-4 py-3 rounded-lg border border-gray/20 focus:border-amber focus:ring-2 focus:ring-amber/20 outline-none transition-all text-sm resize-none disabled:opacity-50"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="px-8 py-3 bg-amber text-dark font-semibold text-sm rounded-lg hover:bg-amber-light transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                      {status === "sending" && (
+                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                      )}
+                      {status === "sending" ? t("contact.formSending") : t("contact.formSend")}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
 

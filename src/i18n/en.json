@@ -68,6 +68,11 @@
     "formEmail": "Your Email",
     "formMessage": "Your Message",
     "formSend": "Send Message",
+    "formSending": "Sending…",
+    "successTitle": "Message Sent!",
+    "successMsg": "Thank you for reaching out. We'll get back to you shortly.",
+    "sendAnother": "Send another message",
+    "errorMsg": "Something went wrong. Please try again or email us directly.",
     "mapTitle": "Find Us"
   },
   "footer": {
