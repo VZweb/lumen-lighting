@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "catalogues": "Catalogues",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Illuminate Your World",
+    "subtitle": "Premium lighting solutions for every space — decorative, architectural, and outdoor.",
+    "cta": "Browse Catalogues"
+  },
+  "highlights": {
+    "title": "What We Offer",
+    "decorative": {
+      "title": "Decorative Lighting",
+      "desc": "Elegant fixtures that transform your living spaces into works of art."
+    },
+    "architectural": {
+      "title": "Architectural Lighting",
+      "desc": "Precision lighting designed to complement modern architecture."
+    },
+    "outdoor": {
+      "title": "Outdoor Lighting",
+      "desc": "Durable, stunning lighting for gardens, facades, and landscapes."
+    },
+    "consultation": {
+      "title": "Expert Consultation",
+      "desc": "Our team helps you find the perfect lighting for your project."
+    }
+  },
+  "instagram": {
+    "title": "Follow Us on Instagram",
+    "subtitle": "Stay inspired with our latest projects and products."
+  },
+  "about": {
+    "storyTitle": "Our Story",
+    "storyP1": "Lumen Lighting was founded with a passion for bringing beautiful, high-quality lighting to homes and businesses. What started as a small family venture has grown into a trusted name in the lighting industry.",
+    "storyP2": "We partner with the world's finest lighting brands to offer an unmatched selection of decorative, architectural, and outdoor lighting solutions. Our showroom is a destination for architects, interior designers, and homeowners alike.",
+    "valuesTitle": "Why Choose Us",
+    "value1Title": "Curated Selection",
+    "value1Desc": "We handpick every brand and product in our catalogue to ensure the highest quality and design standards.",
+    "value2Title": "Expert Guidance",
+    "value2Desc": "Our knowledgeable team provides personalized recommendations for every project, big or small.",
+    "value3Title": "Trusted Brands",
+    "value3Desc": "We partner with internationally renowned manufacturers you can rely on.",
+    "value4Title": "Showroom Experience",
+    "value4Desc": "Visit our showroom to see and feel the lighting before you buy — nothing beats seeing it in person."
+  },
+  "catalogues": {
+    "title": "Our Catalogues",
+    "subtitle": "Browse catalogues from our partner brands. Click any logo to view their full collection.",
+    "decorative": "Decorative",
+    "architectural": "Architectural",
+    "outdoor": "Outdoor",
+    "loading": "Loading catalogues...",
+    "error": "Could not load catalogues. Showing default selection.",
+    "visitCatalogue": "Visit Catalogue"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We'd love to hear from you. Visit our showroom or reach out via phone or email.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "formTitle": "Send Us a Message",
+    "formName": "Your Name",
+    "formEmail": "Your Email",
+    "formMessage": "Your Message",
+    "formSend": "Send Message",
+    "mapTitle": "Find Us"
+  },
+  "footer": {
+    "hours": "Opening Hours",
+    "monTueThuFri": "Mon, Tue, Thu, Fri",
+    "wed": "Wednesday",
+    "sat": "Saturday",
+    "sun": "Sunday",
+    "closed": "Closed",
+    "rights": "All rights reserved.",
+    "findUs": "Find Us"
+  }
+}

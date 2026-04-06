@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #2d2d2f;
+  --color-dark-alt: #16213E;
+  --color-amber: #F0A500;
+  --color-amber-light: #F5C544;
+  --color-offwhite: #F8F8F8;
+  --color-gray: #6B7280;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: #1a1a2e;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
