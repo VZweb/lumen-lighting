@@ -12,16 +12,16 @@ export interface CatalogueData {
 
 export const SHEET_CONFIG = {
   decorative: {
-    url: "", // Set the published CSV URL for the Decorative tab
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFYWHgRMSAryFdLRJIdA6F8eue_Z7MCiaIG7w-NKIh9igrFYiB9JklVmwJyVAdzgtL23D533BH-Qas/pub?gid=0&single=true&output=csv",
     gid: "0",
   },
   architectural: {
-    url: "", // Set the published CSV URL for the Architectural tab
-    gid: "0",
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFYWHgRMSAryFdLRJIdA6F8eue_Z7MCiaIG7w-NKIh9igrFYiB9JklVmwJyVAdzgtL23D533BH-Qas/pub?gid=2015219401&single=true&output=csv",
+    gid: "2015219401",
   },
   outdoor: {
-    url: "", // Set the published CSV URL for the Outdoor tab
-    gid: "0",
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFYWHgRMSAryFdLRJIdA6F8eue_Z7MCiaIG7w-NKIh9igrFYiB9JklVmwJyVAdzgtL23D533BH-Qas/pub?gid=1810293789&single=true&output=csv",
+    gid: "1810293789",
   },
 };
 
