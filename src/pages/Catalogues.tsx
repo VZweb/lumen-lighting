@@ -6,11 +6,9 @@ import type { CatalogueEntry } from "@/data/catalogues";
 function CategorySection({
   title,
   items,
-  maxCols,
 }: {
   title: string;
   items: CatalogueEntry[];
-  maxCols: "lg:grid-cols-5" | "lg:grid-cols-4" | "lg:grid-cols-3";
 }) {
   if (items.length === 0) return null;
 
@@ -22,11 +20,7 @@ function CategorySection({
         </h3>
         <div className="flex-1 h-px bg-gray/20" />
       </div>
-      <div
-        className={`grid grid-cols-2 sm:grid-cols-3 ${maxCols} gap-4 ${
-          items.length <= 4 ? "max-w-3xl" : ""
-        }`}
-      >
+      <div className="flex flex-wrap gap-4">
         {items.map((item) => (
           <BrandCard key={item.name} {...item} />
         ))}
@@ -37,11 +31,11 @@ function CategorySection({
 
 function SkeletonGrid() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div className="flex flex-wrap gap-4">
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="aspect-[2/1] rounded-xl bg-gray/10 animate-pulse"
+          className="w-52 h-28 rounded-xl bg-gray/10 animate-pulse"
         />
       ))}
     </div>
@@ -83,17 +77,14 @@ export default function Catalogues() {
               <CategorySection
                 title={t("catalogues.decorative")}
                 items={data.decorative}
-                maxCols="lg:grid-cols-5"
               />
               <CategorySection
                 title={t("catalogues.architectural")}
                 items={data.architectural}
-                maxCols="lg:grid-cols-4"
               />
               <CategorySection
                 title={t("catalogues.outdoor")}
                 items={data.outdoor}
-                maxCols="lg:grid-cols-3"
               />
             </>
           )}
