@@ -53,23 +53,16 @@ async function fetchTab(csvUrl: string): Promise<CatalogueEntry[]> {
 }
 
 export function useCatalogues() {
-  const [data, setData] = useState<CatalogueData>(FALLBACK_CATALOGUES);
-  const [loading, setLoading] = useState(true);
+  const cached = getCached();
+  const [data, setData] = useState<CatalogueData>(cached ?? FALLBACK_CATALOGUES);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const cached = getCached();
-    if (cached) {
-      setData(cached);
-      setLoading(false);
-      return;
-    }
+    if (cached) return;
 
     const hasUrls = Object.values(SHEET_CONFIG).some((c) => c.url);
-    if (!hasUrls) {
-      setLoading(false);
-      return;
-    }
+    if (!hasUrls) return;
 
     Promise.all([
       fetchTab(SHEET_CONFIG.decorative.url),
@@ -87,9 +80,6 @@ export function useCatalogues() {
       })
       .catch(() => {
         setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, []);
 
