@@ -6,14 +6,14 @@ export default function BrandCard({ name, logo, url }: CatalogueEntry) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center justify-center p-4 bg-white rounded-xl border border-gray/10 hover:border-amber/40 hover:shadow-lg transition-all w-52 h-28"
+      className="group flex items-center justify-center p-4 bg-white rounded-xl border border-gray/10 hover:border-amber/40 hover:shadow-lg transition-all w-[calc(50%-0.5rem)] sm:w-52 h-28"
       title={name}
     >
       {logo ? (
         <img
           src={logo}
           alt={name}
-          className="max-h-40 max-w-[95%] object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+          className="max-h-40 max-w-[95%] object-contain"
           loading="lazy"
         />
       ) : (

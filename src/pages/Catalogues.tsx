@@ -35,7 +35,7 @@ function SkeletonGrid() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="w-52 h-28 rounded-xl bg-gray/10 animate-pulse"
+          className="w-[calc(50%-0.5rem)] sm:w-52 h-28 rounded-xl bg-gray/10 animate-pulse"
         />
       ))}
     </div>
