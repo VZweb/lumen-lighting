@@ -55,7 +55,8 @@ async function fetchTab(csvUrl: string): Promise<CatalogueEntry[]> {
 export function useCatalogues() {
   const cached = getCached();
   const [data, setData] = useState<CatalogueData>(cached ?? FALLBACK_CATALOGUES);
-  const [loading, setLoading] = useState(false);
+  // Fallback logos render immediately, so this stays false while the sheet fetch runs.
+  const loading = false;
   const [error, setError] = useState(false);
 
   useEffect(() => {
