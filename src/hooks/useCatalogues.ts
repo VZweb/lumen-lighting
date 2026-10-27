@@ -15,6 +15,18 @@ interface CacheEntry {
   timestamp: number;
 }
 
+function withoutDecor7(entries: CatalogueEntry[]): CatalogueEntry[] {
+  return entries.filter((entry) => !entry.logo.includes("decor-7.jpg"));
+}
+
+function withoutDecor7Data(data: CatalogueData): CatalogueData {
+  return {
+    decorative: withoutDecor7(data.decorative),
+    architectural: withoutDecor7(data.architectural),
+    outdoor: withoutDecor7(data.outdoor),
+  };
+}
+
 function getCached(): CatalogueData | null {
   try {
     const raw = sessionStorage.getItem(CACHE_KEY);
@@ -24,7 +36,7 @@ function getCached(): CatalogueData | null {
       sessionStorage.removeItem(CACHE_KEY);
       return null;
     }
-    return cached.data;
+    return withoutDecor7Data(cached.data);
   } catch {
     return null;
   }
@@ -43,13 +55,15 @@ async function fetchTab(csvUrl: string): Promise<CatalogueEntry[]> {
     header: true,
     skipEmptyLines: true,
   });
-  return parsed.data
-    .filter((row) => row.name && row.url)
-    .map((row) => ({
-      name: row.name.trim(),
-      logo: (row.logo || "").trim(),
-      url: row.url.trim(),
-    }));
+  return withoutDecor7(
+    parsed.data
+      .filter((row) => row.name && row.url)
+      .map((row) => ({
+        name: row.name.trim(),
+        logo: (row.logo || "").trim(),
+        url: row.url.trim(),
+      })),
+  );
 }
 
 export function useCatalogues() {
