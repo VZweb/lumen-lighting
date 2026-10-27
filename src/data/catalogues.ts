@@ -33,7 +33,6 @@ export const FALLBACK_CATALOGUES: CatalogueData = {
     { name: "Decor 4", logo: "/images/brands/decor-4.png", url: "https://www.ideal-lux.com/" },
     { name: "Decor 5", logo: "/images/brands/decor-5.png", url: "http://www.maytoni.de/" },
     { name: "Decor 6", logo: "/images/brands/decor-6.png", url: "https://gealuce.com/" },
-    { name: "Decor 7", logo: "/images/brands/decor-7.jpg", url: "https://faneurope.it/cataloghi/" },
     { name: "Decor 8", logo: "/images/brands/decor-8.png", url: "https://www.ondaluce-illuminazione.com/" },
     { name: "Decor 9", logo: "/images/brands/decor-9.png", url: "https://www.slamp.com/" },
     { name: "Decor 10", logo: "/images/brands/decor-10.png", url: "http://www.faro.es/" },
