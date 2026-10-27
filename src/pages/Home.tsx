@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import HeroSection from "@/components/HeroSection";
 import HighlightCard from "@/components/HighlightCard";
-import InstagramFeed from "@/components/InstagramFeed";
 
 const ICONS = {
   decorative: (
@@ -58,8 +57,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <InstagramFeed />
     </>
   );
 }
