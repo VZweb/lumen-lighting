@@ -3,9 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import HighlightCard from "@/components/HighlightCard";
 import InstagramFeed from "@/components/InstagramFeed";
 
-// Temporarily hidden. Set to true to show the Instagram section again.
-const SHOW_INSTAGRAM_SECTION = false;
-
 const ICONS = {
   decorative: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -62,7 +59,7 @@ export default function Home() {
         </div>
       </section>
 
-      {SHOW_INSTAGRAM_SECTION && <InstagramFeed />}
+      <InstagramFeed />
     </>
   );
 }
